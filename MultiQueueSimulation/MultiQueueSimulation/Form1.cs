@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MultiQueueModels;
 using MultiQueueTesting;
@@ -14,19 +11,37 @@ namespace MultiQueueSimulation
 {
     public partial class Form1 : Form
     {
+        private List<DataGridView> serverTables = new List<DataGridView>();
+        private int currentServerIndex = 0;
+        private Button buttonNext;
+        private Button buttonPrev;
+
         public Form1()
         {
             InitializeComponent();
             comboBox1.Items.Add("Priority");
             comboBox1.Items.Add("Random");
             comboBox1.Items.Add("Least utilization");
-
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.SelectedIndex = 0;
+
             comboBox2.Items.Add("Maximum Number of customers");
             comboBox2.Items.Add("Simulation end time");
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.SelectedIndex = 0;
+
+            buttonPrev = new Button();
+            buttonPrev.Text = "←";
+            buttonPrev.Width = 50;
+            buttonPrev.Click += buttonPrev_Click;
+
+            buttonNext = new Button();
+            buttonNext.Text = "→";
+            buttonNext.Width = 50;
+            buttonNext.Click += buttonNext_Click;
+
+            panel1.Controls.Add(buttonPrev);
+            panel1.Controls.Add(buttonNext);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -37,10 +52,8 @@ namespace MultiQueueSimulation
         {
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            // جدول الـ Interarrival
             dataGridView1.Columns.Add("InterarrivalTime", "Interarrival Time");
             dataGridView1.Columns.Add("Probability", "Probability");
             InitializeMainTable(5);
@@ -50,12 +63,10 @@ namespace MultiQueueSimulation
 
             panel1.AutoScroll = true;
 
-            // جدول النتائج
             dataGridViewResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewResults.AllowUserToAddRows = false;
             dataGridViewResults.AllowUserToDeleteRows = false;
 
-            // إنشاء الأعمدة المطلوبة لعرض كل القيم
             dataGridViewResults.Columns.Add("CustomerNo", "Customer No");
             dataGridViewResults.Columns.Add("RandInterArrival", "Random Digit for Inter-Arrival");
             dataGridViewResults.Columns.Add("InterArrival", "Inter-Arrival Time");
@@ -68,13 +79,13 @@ namespace MultiQueueSimulation
             dataGridViewResults.Columns.Add("TimeInQueue", "Total Delay (Time in Queue)");
         }
 
-
         private void InitializeMainTable(int numRows)
         {
             dataGridView1.Rows.Clear();
             for (int i = 0; i < numRows; i++)
                 dataGridView1.Rows.Add();
         }
+
         private void label5_Click(object sender, EventArgs e)
         {
         }
@@ -94,8 +105,8 @@ namespace MultiQueueSimulation
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             UpdateSubTables();
-
         }
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             int numRows;
@@ -116,28 +127,13 @@ namespace MultiQueueSimulation
             int numTables;
             int numRows = dataGridView1.Rows.Count > 0 ? dataGridView1.Rows.Count : 5;
 
-            if (int.TryParse(textBox2.Text, out numTables) && numTables > 0)
+            serverTables.Clear();
+            panel1.Controls.Clear();
+
+            if (int.TryParse(textBox1.Text, out numTables) && numTables > 0)
             {
-                panel1.Controls.Clear();
-
-                int xOffset = 10;
-                int yOffset = 10;
-
                 for (int i = 0; i < numTables; i++)
                 {
-                    Label lbl = new Label();
-                    lbl.Text = $"Server {i + 1}";
-                    lbl.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-                    lbl.AutoSize = true;
-                    lbl.Left = xOffset + 30;
-                    lbl.Top = yOffset;
-
-                    Panel subPanel = new Panel();
-                    subPanel.Left = xOffset;
-                    subPanel.Top = lbl.Bottom + 5;
-                    subPanel.BackColor = Color.White;
-                    subPanel.BorderStyle = BorderStyle.FixedSingle;
-
                     DataGridView dgv = new DataGridView();
                     dgv.Name = $"serverTable{i + 1}";
                     dgv.Width = dataGridView1.Width;
@@ -152,23 +148,65 @@ namespace MultiQueueSimulation
                     for (int r = 0; r < numRows; r++)
                         dgv.Rows.Add();
 
-                    int headerHeight = dgv.ColumnHeadersHeight;
-                    int rowsHeight = dgv.RowTemplate.Height * numRows;
-                    dgv.Height = headerHeight + rowsHeight + 2;
-
-                    subPanel.Width = dgv.Width + 2;
-                    subPanel.Height = dgv.Height + 2;
-                    subPanel.Controls.Add(dgv);
-
-                    panel1.Controls.Add(lbl);
-                    panel1.Controls.Add(subPanel);
-
-                    xOffset += subPanel.Width + 20;
+                    serverTables.Add(dgv);
                 }
+
+                currentServerIndex = 0;
+                ShowCurrentServerTable();
             }
-            else
+        }
+
+        private void ShowCurrentServerTable()
+        {
+            panel1.Controls.Clear();
+
+            if (serverTables.Count == 0) return;
+
+            Label lbl = new Label();
+            lbl.Text = $"Server {currentServerIndex + 1} / {serverTables.Count}";
+            lbl.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            lbl.AutoSize = true;
+            lbl.Left = 10;
+            lbl.Top = 10;
+
+            DataGridView currentTable = serverTables[currentServerIndex];
+            currentTable.Top = lbl.Bottom + 5;
+            currentTable.Left = 10;
+
+            panel1.Controls.Add(lbl);
+            panel1.Controls.Add(currentTable);
+
+            // ضبط حجم الـ panel حسب الجدول
+            int panelWidth = currentTable.Width + 40;
+            int panelHeight = currentTable.Height + lbl.Height + 80;
+            panel1.Width = panelWidth;
+            panel1.Height = panelHeight;
+
+            // وضع الأزرار داخل الـ panel
+            buttonPrev.Top = currentTable.Bottom + 10;
+            buttonPrev.Left = panel1.Width / 2 - 70;
+            buttonNext.Top = currentTable.Bottom + 10;
+            buttonNext.Left = panel1.Width / 2 + 20;
+
+            panel1.Controls.Add(buttonPrev);
+            panel1.Controls.Add(buttonNext);
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            if (currentServerIndex < serverTables.Count - 1)
             {
-                panel1.Controls.Clear();
+                currentServerIndex++;
+                ShowCurrentServerTable();
+            }
+        }
+
+        private void buttonPrev_Click(object sender, EventArgs e)
+        {
+            if (currentServerIndex > 0)
+            {
+                currentServerIndex--;
+                ShowCurrentServerTable();
             }
         }
 
@@ -178,7 +216,6 @@ namespace MultiQueueSimulation
             {
                 SimulationSystem system = new SimulationSystem();
 
-                // اختيار طريقة اختيار السيرفر
                 string selectedMethod = comboBox1.SelectedItem.ToString();
                 if (selectedMethod == "Random")
                     system.SelectionMethod = Enums.SelectionMethod.Random;
@@ -187,7 +224,6 @@ namespace MultiQueueSimulation
                 else
                     system.SelectionMethod = Enums.SelectionMethod.LeastUtilization;
 
-                // قراءة جدول الـ Interarrival
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[1].Value != null)
@@ -201,18 +237,16 @@ namespace MultiQueueSimulation
                     }
                 }
 
-                // قراءة عدد السيرفرات والعملاء
-                int numServers = int.Parse(textBox2.Text);
+                int numServers = int.Parse(textBox1.Text);
                 system.NumberOfServers = numServers;
-                system.StoppingNumber = int.Parse(textBox1.Text);
+                system.StoppingNumber = int.Parse(textBox2.Text);
                 system.StoppingCriteria = Enums.StoppingCriteria.NumberOfCustomers;
 
-                // قراءة كل سيرفر
                 for (int i = 0; i < numServers; i++)
                 {
-                    DataGridView dgv = panel1.Controls.Find($"serverTable{i + 1}", true).FirstOrDefault() as DataGridView;
-                    if (dgv != null)
+                    if (i < serverTables.Count)
                     {
+                        DataGridView dgv = serverTables[i];
                         Server server = new Server();
                         server.ID = i + 1;
                         foreach (DataGridViewRow r in dgv.Rows)
@@ -230,10 +264,8 @@ namespace MultiQueueSimulation
                     }
                 }
 
-                // تشغيل المحاكاة
                 system.RunSimulation();
 
-                // عرض النتائج في الجدول
                 dataGridViewResults.Rows.Clear();
                 foreach (var c in system.SimulationTable)
                 {
@@ -251,12 +283,12 @@ namespace MultiQueueSimulation
                     );
                 }
 
-                // عرض الملخص
                 string summary = $"Average Waiting Time: {system.PerformanceMeasures.AverageWaitingTime}\n" +
                                  $"Waiting Probability: {system.PerformanceMeasures.WaitingProbability}\n" +
                                  $"Max Queue Length: {system.PerformanceMeasures.MaxQueueLength}";
                 MessageBox.Show(summary, "Simulation Results");
-                string testingResult = TestingManager.Test(system, Constants.FileNames.TestCase1);
+
+                string testingResult = TestingManager.Test(system, Constants.FileNames.TestCase2);
                 MessageBox.Show(testingResult);
             }
             catch (Exception ex)

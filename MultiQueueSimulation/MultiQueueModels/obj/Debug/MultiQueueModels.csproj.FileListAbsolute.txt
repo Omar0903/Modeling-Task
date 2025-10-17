@@ -40,3 +40,15 @@ C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueModels
 C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.csproj.CoreCompileInputs.cache
 C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.dll
 C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.pdb
+C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueModels\bin\Debug\MultiQueueModels.dll
+C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueModels\bin\Debug\MultiQueueModels.pdb
+C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.csproj.AssemblyReference.cache
+C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.csproj.CoreCompileInputs.cache
+C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.dll
+C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.pdb
+C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueModels\bin\Debug\MultiQueueModels.dll
+C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueModels\bin\Debug\MultiQueueModels.pdb
+C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.csproj.AssemblyReference.cache
+C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.csproj.CoreCompileInputs.cache
+C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.dll
+C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueModels\obj\Debug\MultiQueueModels.pdb

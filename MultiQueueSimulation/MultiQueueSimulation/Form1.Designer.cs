@@ -30,12 +30,12 @@ namespace MultiQueueSimulation
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -48,20 +48,20 @@ namespace MultiQueueSimulation
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBox2
             // 
-            this.textBox1.Location = new System.Drawing.Point(651, 203);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(45, 26);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox2.Location = new System.Drawing.Point(651, 203);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(44, 26);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(77, 201);
+            this.label1.Location = new System.Drawing.Point(76, 202);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(238, 28);
             this.label1.TabIndex = 1;
@@ -74,7 +74,7 @@ namespace MultiQueueSimulation
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(336, 275);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(309, 28);
+            this.comboBox1.Size = new System.Drawing.Size(308, 28);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -82,7 +82,7 @@ namespace MultiQueueSimulation
             // 
             this.label2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(77, 275);
+            this.label2.Location = new System.Drawing.Point(76, 275);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(238, 28);
             this.label2.TabIndex = 5;
@@ -94,27 +94,27 @@ namespace MultiQueueSimulation
             // 
             this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(77, 140);
+            this.label3.Location = new System.Drawing.Point(76, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(238, 29);
             this.label3.TabIndex = 6;
             this.label3.Text = "Number of servers";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // textBox1
             // 
-            this.textBox2.Location = new System.Drawing.Point(336, 143);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(145, 26);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Location = new System.Drawing.Point(336, 143);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(145, 26);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(336, 201);
+            this.comboBox2.Location = new System.Drawing.Point(336, 202);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(309, 28);
+            this.comboBox2.Size = new System.Drawing.Size(308, 28);
             this.comboBox2.TabIndex = 8;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -135,20 +135,20 @@ namespace MultiQueueSimulation
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(47, 549);
+            this.dataGridView1.Location = new System.Drawing.Point(760, 143);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(361, 228);
+            this.dataGridView1.Size = new System.Drawing.Size(362, 228);
             this.dataGridView1.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(77, 328);
+            this.label5.Location = new System.Drawing.Point(76, 328);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(238, 27);
+            this.label5.Size = new System.Drawing.Size(238, 28);
             this.label5.TabIndex = 11;
             this.label5.Text = "Entre numbers of rows";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,7 +158,7 @@ namespace MultiQueueSimulation
             // 
             this.textBox3.Location = new System.Drawing.Point(336, 329);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(231, 26);
+            this.textBox3.Size = new System.Drawing.Size(230, 26);
             this.textBox3.TabIndex = 12;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -167,16 +167,16 @@ namespace MultiQueueSimulation
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.Location = new System.Drawing.Point(432, 511);
+            this.panel1.Location = new System.Drawing.Point(1219, 140);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1247, 302);
+            this.panel1.Size = new System.Drawing.Size(439, 302);
             this.panel1.TabIndex = 13;
             // 
             // btnRunSimulation
             // 
-            this.btnRunSimulation.Location = new System.Drawing.Point(1522, 856);
+            this.btnRunSimulation.Location = new System.Drawing.Point(1452, 968);
             this.btnRunSimulation.Name = "btnRunSimulation";
-            this.btnRunSimulation.Size = new System.Drawing.Size(137, 32);
+            this.btnRunSimulation.Size = new System.Drawing.Size(248, 53);
             this.btnRunSimulation.TabIndex = 14;
             this.btnRunSimulation.Text = "Run Simulation";
             this.btnRunSimulation.UseVisualStyleBackColor = true;
@@ -185,11 +185,11 @@ namespace MultiQueueSimulation
             // dataGridViewResults
             // 
             this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewResults.Location = new System.Drawing.Point(47, 877);
+            this.dataGridViewResults.Location = new System.Drawing.Point(80, 502);
             this.dataGridViewResults.Name = "dataGridViewResults";
             this.dataGridViewResults.RowHeadersWidth = 62;
             this.dataGridViewResults.RowTemplate.Height = 28;
-            this.dataGridViewResults.Size = new System.Drawing.Size(1193, 295);
+            this.dataGridViewResults.Size = new System.Drawing.Size(1454, 320);
             this.dataGridViewResults.TabIndex = 15;
             // 
             // Form1
@@ -197,7 +197,7 @@ namespace MultiQueueSimulation
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(1910, 1209);
+            this.ClientSize = new System.Drawing.Size(1712, 1228);
             this.Controls.Add(this.dataGridViewResults);
             this.Controls.Add(this.btnRunSimulation);
             this.Controls.Add(this.dataGridView1);
@@ -206,13 +206,13 @@ namespace MultiQueueSimulation
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Controls.Add(this.textBox2);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Form1";
             this.Text = "Modeling and Simulation Task";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -225,12 +225,12 @@ namespace MultiQueueSimulation
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private Label label2;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox textBox1;
         private ComboBox comboBox2;
         private Label label4;
         private DataGridView dataGridView1;
