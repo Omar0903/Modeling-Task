@@ -185,7 +185,7 @@ namespace MultiQueueSimulation
             // dataGridViewResults
             // 
             this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewResults.Location = new System.Drawing.Point(29, 390);
+            this.dataGridViewResults.Location = new System.Drawing.Point(12, 1033);
             this.dataGridViewResults.Name = "dataGridViewResults";
             this.dataGridViewResults.RowHeadersWidth = 62;
             this.dataGridViewResults.RowTemplate.Height = 28;

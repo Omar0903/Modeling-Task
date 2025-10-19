@@ -97,7 +97,6 @@ C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueSimula
 C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQue.56E769F8.Up2Date
 C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe
 C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.pdb
-C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe.config
 C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.exe.config
 C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.exe
 C:\Users\3mr2b\Downloads\Template_Students - final final\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.pdb
@@ -126,3 +125,18 @@ C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\Mul
 C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQue.56E769F8.Up2Date
 C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe
 C:\Users\3mr2b\Downloads\Template_Students - final test\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.pdb
+C:\Users\3mr2b\Downloads\Template_Students\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe.config
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.exe.config
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.exe
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueSimulation.pdb
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueModels.dll
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\bin\Debug\MultiQueueModels.pdb
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.AssemblyReference.cache
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe.config
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.Form1.resources
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.Properties.Resources.resources
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.GenerateResource.cache
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.csproj.CoreCompileInputs.cache
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQue.56E769F8.Up2Date
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.exe
+C:\Users\3mr2b\Downloads\Template_Students final[V7]\MultiQueueSimulation\MultiQueueSimulation\obj\Debug\MultiQueueSimulation.pdb

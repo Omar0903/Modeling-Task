@@ -15,10 +15,41 @@ namespace MultiQueueSimulation
         private int currentServerIndex = 0;
         private Button buttonNext;
         private Button buttonPrev;
-
+        private Panel graphPanel;
+        private Button nextGraph;
+        private Button previousGraph;
+        private int currentGraphServerIndex = 0;
+        private SimulationSystem simulationSystem; // لتخزين النظام بعد التشغيل
         public Form1()
         {
             InitializeComponent();
+            graphPanel = new Panel();
+            graphPanel.Width = 1200;       // نفس عرض panel1
+            graphPanel.Height = 270;                // ارتفاع مناسب
+            graphPanel.Top = 350;   // أسفل panel1
+            graphPanel.Left = 20;
+            graphPanel.BorderStyle = BorderStyle.FixedSingle;
+            graphPanel.BackColor = Color.White;    // يظهر دائمًا
+            graphPanel.Paint += GraphPanel_Paint;  // Paint event للرسم المستمر
+            this.Controls.Add(graphPanel);
+
+            // زر السابق للرسم
+            previousGraph = new Button();
+            previousGraph.Text = "←";
+            previousGraph.Width = 50;
+            previousGraph.Top = graphPanel.Bottom + 5;
+            previousGraph.Left = graphPanel.Left;
+            previousGraph.Click += PreviousGraph_Click;
+            this.Controls.Add(previousGraph);
+
+            // زر التالي للرسم
+            nextGraph = new Button();
+            nextGraph.Text = "→";
+            nextGraph.Width = 50;
+            nextGraph.Top = graphPanel.Bottom + 5;
+            nextGraph.Left = graphPanel.Left + 60;
+            nextGraph.Click += NextGraph_Click;
+            this.Controls.Add(nextGraph);
             comboBox1.Items.Add("Priority");
             comboBox1.Items.Add("Random");
             comboBox1.Items.Add("Least utilization");
@@ -43,6 +74,91 @@ namespace MultiQueueSimulation
             panel1.Controls.Add(buttonPrev);
             panel1.Controls.Add(buttonNext);
         }
+        private void GraphPanel_Paint(object sender, PaintEventArgs e)
+        {
+            if (simulationSystem == null) return;
+            DrawGraphForServer(currentGraphServerIndex, e.Graphics);
+        }
+        private void DrawGraphForServer(int serverIndex, Graphics g)
+        {
+            if (simulationSystem == null || simulationSystem.SimulationTable.Count == 0) return;
+            if (serverIndex < 0 || serverIndex >= simulationSystem.NumberOfServers) return;
+
+            g.Clear(Color.White);
+
+            Pen axisPen = new Pen(Color.Black, 1);
+            Brush workBrush = new SolidBrush(Color.AliceBlue); // اللون البني
+            Brush textBrush = Brushes.Black;
+
+            int margin = 50;
+            int panelWidth = graphPanel.Width - 2 * margin;
+            int panelHeight = graphPanel.Height - 2 * margin;
+
+            // رسم المحاور فقط
+            g.DrawLine(axisPen, margin, panelHeight + margin, panelWidth + margin, panelHeight + margin); // X-axis
+            g.DrawLine(axisPen, margin, margin, margin, panelHeight + margin); // Y-axis
+
+            // Y-axis 0 → 1 بتسميات فقط
+            for (double yVal = 0; yVal <= 1.0; yVal += 0.2)
+            {
+                int y = margin + panelHeight - (int)(yVal * panelHeight);
+                g.DrawString(yVal.ToString("0.0"), new Font("Segoe UI", 8), textBrush, 5, y - 7);
+            }
+
+            // X-axis من 0 → نهاية آخر حدث فعلي بتسميات فقط
+            double endTime = simulationSystem.SimulationTable.Max(c => c.EndTime);
+            for (double t = 0; t <= endTime; t += 2)
+            {
+                int x = margin + (int)((t / endTime) * panelWidth);
+                g.DrawString(t.ToString("0"), new Font("Segoe UI", 8), textBrush, x - 5, panelHeight + margin + 2);
+            }
+
+            // رسم البارات لكل فترة شغل السيرفر
+            var serverEvents = simulationSystem.SimulationTable
+                .Where(c => c.AssignedServer.ID == serverIndex + 1)
+                .Select(c => new { Start = c.StartTime, End = c.EndTime })
+                .ToList();
+
+            foreach (var ev in serverEvents)
+            {
+                int x = margin + (int)((ev.Start / endTime) * panelWidth);
+                int width = (int)(((ev.End - ev.Start) / endTime) * panelWidth);
+                int y = margin;
+                int barHeight = panelHeight;
+                g.FillRectangle(workBrush, x, y, width, barHeight);
+            }
+
+            // تسمية المحاور
+            g.DrawString("Time", new Font("Segoe UI", 10, FontStyle.Bold), textBrush, margin + panelWidth / 2 - 20, panelHeight + margin + 20);
+            g.DrawString("B(t)", new Font("Segoe UI", 10, FontStyle.Bold), textBrush, 5, margin - 20);
+
+            // عنوان السيرفر
+            g.DrawString($"Server {serverIndex + 1}", new Font("Segoe UI", 12, FontStyle.Bold), textBrush, margin, 5);
+        }
+
+
+
+
+        private void NextGraph_Click(object sender, EventArgs e)
+        {
+            if (currentGraphServerIndex < simulationSystem.NumberOfServers - 1)
+            {
+                currentGraphServerIndex++;
+                graphPanel.Invalidate(); // يعيد الرسم تلقائيًا
+            }
+        }
+
+        private void PreviousGraph_Click(object sender, EventArgs e)
+        {
+            if (currentGraphServerIndex > 0)
+            {
+                currentGraphServerIndex--;
+                graphPanel.Invalidate(); // يعيد الرسم تلقائيًا
+            }
+        }
+
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -282,13 +398,16 @@ namespace MultiQueueSimulation
                         c.TimeInQueue
                     );
                 }
+                simulationSystem = system; // تخزين النظام للرسم
+                currentGraphServerIndex = 0;
+                graphPanel.Invalidate();   // يظهر الرسم لأول سيرفر
 
                 string summary = $"Average Waiting Time: {system.PerformanceMeasures.AverageWaitingTime}\n" +
                                  $"Waiting Probability: {system.PerformanceMeasures.WaitingProbability}\n" +
                                  $"Max Queue Length: {system.PerformanceMeasures.MaxQueueLength}";
                 MessageBox.Show(summary, "Simulation Results");
 
-                string testingResult = TestingManager.Test(system, Constants.FileNames.TestCase3);
+                string testingResult = TestingManager.Test(system, Constants.FileNames.TestCase2);
                 MessageBox.Show(testingResult);
             }
             catch (Exception ex)
