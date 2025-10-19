@@ -288,7 +288,7 @@ namespace MultiQueueSimulation
                                  $"Max Queue Length: {system.PerformanceMeasures.MaxQueueLength}";
                 MessageBox.Show(summary, "Simulation Results");
 
-                string testingResult = TestingManager.Test(system, Constants.FileNames.TestCase2);
+                string testingResult = TestingManager.Test(system, Constants.FileNames.TestCase3);
                 MessageBox.Show(testingResult);
             }
             catch (Exception ex)

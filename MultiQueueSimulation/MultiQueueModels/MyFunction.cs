@@ -72,22 +72,45 @@ namespace MultiQueueModels
         {
             if (table.Count == 0) return;
 
+            // -----------------------------
+            // ?????? ????? ??????
+            // -----------------------------
             performance.AverageWaitingTime = (decimal)table.Average(x => x.TimeInQueue);
             performance.WaitingProbability = (decimal)table.Count(x => x.TimeInQueue > 0) / table.Count;
             performance.MaxQueueLength = GetMaxQueueLength(table);
 
-            int totalEndTime = table.Last().EndTime;
-            if (totalEndTime <= 0) totalEndTime = 1;
+            // ?????? ??? ???????? (??? ???? ??? ?????)
+            int totalSimulationTime = table.Max(c => c.EndTime);
+            if (totalSimulationTime <= 0)
+                totalSimulationTime = 1;
 
+            // -----------------------------
+            // ?????? ??? ?????
+            // -----------------------------
             foreach (var s in servers)
             {
-                s.Utilization = (decimal)s.TotalWorkingTime / totalEndTime;
-                s.IdleProbability = 1 - s.Utilization;
+                var servedCases = table.Where(c => c.AssignedServer == s).ToList();
 
-                int served = table.Count(c => c.AssignedServer == s);
-                s.AverageServiceTime = served > 0 ? (decimal)s.TotalWorkingTime / served : 0;
+                if (servedCases.Count > 0)
+                {
+                    // ???? ???? ??????? ???????
+                    s.Utilization = (decimal)s.TotalWorkingTime / totalSimulationTime;
+                    s.IdleProbability = 1 - s.Utilization;
+
+                    // ????? ??? ??????
+                    s.AverageServiceTime = (decimal)s.TotalWorkingTime / servedCases.Count;
+                }
+                else
+                {
+                    // ??????? ?? ?????? ????
+                    s.Utilization = 0;
+                    s.IdleProbability = 1;
+                    s.AverageServiceTime = 0;
+                }
             }
         }
+
+
 
         public static void NormalizeDistributionProbabilities(List<TimeDistribution> distList)
         {
